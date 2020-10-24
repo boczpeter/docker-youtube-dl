@@ -1,0 +1,7 @@
+#!/bin/bash
+DIR=$(realpath $(dirname $0))
+
+docker run --rm -i --name youtube-dl -e PGID=$(id -g) -e PUID=$(id -u) \
+  -v $DIR/youtube-dl.conf:/etc/youtube-dl.conf:ro \
+  -v $(pwd):/workdir:rw \
+  mikenye/youtube-dl:latest $*
